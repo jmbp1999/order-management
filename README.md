@@ -58,3 +58,25 @@ SECURED APIs should be called with Bearer Token.
 - Responsible for transitioning orders from 'NEW' state to 'DISPATCH' state.
 - Ideally, run on a separate server.
 - Can store the timestamp of the last dispatch to optimize database queries.
+
+## Setup Instructions
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/jmbp1999/order-management.git
+   ```
+
+2. **Prerequisites:**
+   - Docker
+   - If running locally:
+     - JDK 17
+
+3. **Comment/Uncomment Application Properties:**
+   - Depending on the environment (local, production, etc.), modify the application properties. Comment or uncomment relevant lines in the configuration files.
+
+4. **Running Locally:**
+   - Ensure JDK 17 is installed.
+   - Run the application using your preferred build tool or IDE.
+
+5. **Docker:**
+   - Follow Docker-specific instructions to run the application in a containerized environment.
