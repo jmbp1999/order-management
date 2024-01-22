@@ -33,15 +33,11 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             String authHeader = request.getHeader("Authorization");
-            String token = null;
+            String token= null;
             String userName = null;
-
-            if (authHeader != null && authHeader.startsWith("Bearer")) {
+            if(authHeader !=null && authHeader.startsWith("Bearer")){
                 token = authHeader.substring(7);
-                userName = jwtService.extractUserName(token);
-            } else {
-                sendErrorResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "TOKEN UNAVAILABLE");
-                return;
+                userName =jwtService.extractUserName(token);
             }
 
             if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
