@@ -42,7 +42,6 @@ public class UserInfoDetails implements UserDetails {
 
     public Long getUserId(){return userId;}
 
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
