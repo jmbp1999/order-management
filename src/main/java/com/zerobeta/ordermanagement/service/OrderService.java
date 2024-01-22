@@ -1,13 +1,14 @@
 package com.zerobeta.ordermanagement.service;
-
 import com.zerobeta.ordermanagement.dto.OrderRequest;
 import com.zerobeta.ordermanagement.model.Order;
 import com.zerobeta.ordermanagement.enums.OrderStatus;
 import com.zerobeta.ordermanagement.repository.OrderRepository;
 import com.zerobeta.ordermanagement.securityConfig.IAuthenticationFacade;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -76,6 +77,15 @@ public class OrderService {
             }
         } else {
             return "Order not found with ID: " + orderId;
+        }
+    }
+    @Async
+    @Transactional
+    public void updateNewOrdersToDispatchedAsync() {
+        try {
+            orderRepository.updateNewOrdersToDispatched();
+        } catch (Exception e) {
+            System.out.println("Error updating NEW orders to DISPATCHED");
         }
     }
 
