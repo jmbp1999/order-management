@@ -80,6 +80,6 @@ SECURED APIs should be called with Bearer Token.
 
 5. **Docker:**
    - Run the following command in the ROOT Directory
-   -    ```bash
+  ```bash
     docker-compose up
-   ```
+  ```
