@@ -79,4 +79,7 @@ SECURED APIs should be called with Bearer Token.
    - Run the application using your preferred build tool or IDE.
 
 5. **Docker:**
-   - Follow Docker-specific instructions to run the application in a containerized environment.
+   - Run the following command in the ROOT Directory
+   -    ```bash
+    docker-compose up
+   ```
