@@ -1,16 +1,5 @@
 version: "3.8"
 services:
-  mysqldb:
-    image: 'mysql:latest'
-    restart: unless-stopped
-    container_name: mysqldb
-    environment:
-      - MYSQL_DATABASE=order_management
-      - MYSQL_ROOT_PASSWORD=1234
-    ports:
-      - '56789:3306'
-    volumes:
-      - db:/var/lib/mysql
   server:
     build: .
     restart: on-failure
@@ -21,6 +10,16 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/order_management?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
     depends_on:
       - mysqldb
-
+  mysqldb:
+    image: 'mysql:8.3'
+    restart: unless-stopped
+    container_name: mysqldb
+    environment:
+      - MYSQL_DATABASE=order_management
+      - MYSQL_ROOT_PASSWORD=1234
+    ports:
+      - '56789:3306'
+    volumes:
+      - db:/var/lib/mysql
 volumes:
   db:
