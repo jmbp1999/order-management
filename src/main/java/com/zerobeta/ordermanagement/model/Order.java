@@ -36,7 +36,7 @@ public class Order {
     private OrderStatus status;
 
     @Column(nullable = false)
-    private UUID orderReferenceNumber;
+    private String orderReferenceNumber;
 
     @Column(nullable = false)
     private Timestamp placementTimestamp;

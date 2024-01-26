@@ -26,12 +26,12 @@ public class OrderController {
     }
 
     @PostMapping("/place")
-    public Order placeOrder(@RequestBody OrderRequest orderRequest) throws Exception {
+    public String placeOrder(@RequestBody OrderRequest orderRequest) throws Exception {
         return orderService.placeOrder(orderRequest);
     }
-    @PutMapping("/{orderId}/cancel")
-    public String cancelOrder(@PathVariable Long orderId)  {
-        return orderService.cancelOrder(orderId);
+    @PutMapping("/{orderReference}/cancel")
+    public String cancelOrder(@PathVariable String orderReference)  {
+        return orderService.cancelOrder(orderReference);
 
     }
 

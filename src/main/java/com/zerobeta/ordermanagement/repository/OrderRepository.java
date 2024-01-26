@@ -13,4 +13,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Modifying
     @Query("UPDATE Order o SET o.status = 'DISPATCHED' WHERE o.status = 'NEW'")
     void updateNewOrdersToDispatched();
+
+
+    Order findByOrderReferenceNumber(String orderReferenceNumber);
 }

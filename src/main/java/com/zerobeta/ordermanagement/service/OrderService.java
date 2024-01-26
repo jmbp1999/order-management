@@ -23,7 +23,7 @@ public class OrderService {
 
     private final IAuthenticationFacade authenticationFacade;
 
-    public Order placeOrder(OrderRequest orderRequest) throws Exception {
+    public String placeOrder(OrderRequest orderRequest) throws Exception {
         try {
 
             long userId= authenticationFacade.getUserId();
@@ -34,11 +34,12 @@ public class OrderService {
                     .quantity(orderRequest.getQuantity())
                     .shippingAddress(orderRequest.getShippingAddress())
                     .status(OrderStatus.NEW)
-                    .orderReferenceNumber(UUID.randomUUID())
+                    .orderReferenceNumber(UUID.randomUUID().toString())
                     .placementTimestamp(new Timestamp(System.currentTimeMillis()))
                     .userId(userId)
                     .build();
-            return orderRepository.save(order);
+            Order saved = orderRepository.save(order);
+            return saved.getOrderReferenceNumber();
 
         } catch (Exception e) {
             throw new Exception("Error placing order");
@@ -56,8 +57,8 @@ public class OrderService {
     }
 
 
-    public String cancelOrder(Long orderId) {
-        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+    public String cancelOrder(String orderReferenceNumber) {
+        Optional<Order> optionalOrder = Optional.ofNullable(orderRepository.findByOrderReferenceNumber(orderReferenceNumber));
 
         if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
@@ -76,7 +77,7 @@ public class OrderService {
                 return "Unauthorized to cancel order. User ID mismatch.";
             }
         } else {
-            return "Order not found with ID: " + orderId;
+            return "Order not found with ID: " + orderReferenceNumber;
         }
     }
     @Async
