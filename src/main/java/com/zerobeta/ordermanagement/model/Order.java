@@ -13,16 +13,17 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="order_table")
+@Table(
+        name = "order_table",
+        indexes = {@Index(name = "status_index", columnList = "status")}
+)
 public class Order {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(name="itemName",nullable = false)
+    @Column(name = "itemName", nullable = false)
     private String itemName;
 
     @Column(nullable = false)
@@ -40,7 +41,6 @@ public class Order {
 
     @Column(nullable = false)
     private Timestamp placementTimestamp;
-
 
     @Column(nullable = false)
     private long userId;
