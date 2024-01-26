@@ -3,7 +3,7 @@
 
 
 ## DDL Scripts
-
+No need to run these scripts by your own.Just run the first script when in local developments
 ```sql
 CREATE SCHEMA `order_management`;
 
@@ -15,7 +15,8 @@ CREATE TABLE `order_management`.`order_table` (
     status VARCHAR(255) NOT NULL,
     orderReferenceNumber VARCHAR(255) NOT NULL,
     placementTimestamp TIMESTAMP NOT NULL,
-    userId BIGINT NOT NULL
+    userId BIGINT NOT NULL,
+    FOREIGN KEY (userId) REFERENCES `order_management`.`user_table`(id)
 );
 
 CREATE TABLE `order_management`.`user_table` (
@@ -26,6 +27,7 @@ CREATE TABLE `order_management`.`user_table` (
     password VARCHAR(255) NOT NULL,
     roles VARCHAR(255)
 );
+
 ```
 
 ![298721761-52349cff-ccc3-47d5-b9de-b2ba2e50dd68](https://github.com/jmbp1999/order-management/assets/108087237/28527b2e-3efc-4675-beb2-cdbcad93c9f3)
