@@ -1,9 +1,6 @@
 ```markdown
 # Order Management System
 
-## ER Diagram
-![298721761-52349cff-ccc3-47d5-b9de-b2ba2e50dd68](https://github.com/jmbp1999/order-management/assets/108087237/c4408482-c63d-48cf-ace1-9ed94a37b8f1)
-
 
 ## DDL Scripts
 
@@ -30,6 +27,9 @@ CREATE TABLE `order_management`.`user_table` (
     roles VARCHAR(255)
 );
 ```
+
+![298721761-52349cff-ccc3-47d5-b9de-b2ba2e50dd68](https://github.com/jmbp1999/order-management/assets/108087237/28527b2e-3efc-4675-beb2-cdbcad93c9f3)
+
 
 ## Endpoints
 
