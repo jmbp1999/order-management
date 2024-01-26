@@ -14,8 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Table(
-        name = "order_table",
-        indexes = {@Index(name = "status_index", columnList = "status")}
+        name = "order_table"
 )
 public class Order {
 
