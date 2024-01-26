@@ -1,7 +1,34 @@
+```markdown
 # Order Management System
 
 ## ER Diagram
 ![Order Management ER Diagram](https://github.com/jmbp1999/order-management/assets/108087237/52349cff-ccc3-47d5-b9de-b2ba2e50dd68)
+
+## DDL Scripts
+
+```sql
+CREATE SCHEMA `order_management`;
+
+CREATE TABLE `order_management`.`order_table` (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    itemName VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    shippingAddress VARCHAR(255) NOT NULL,
+    status VARCHAR(255) NOT NULL,
+    orderReferenceNumber VARCHAR(255) NOT NULL,
+    placementTimestamp TIMESTAMP NOT NULL,
+    userId BIGINT NOT NULL
+);
+
+CREATE TABLE `order_management`.`user_table` (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    roles VARCHAR(255)
+);
+```
 
 ## Endpoints
 
@@ -10,7 +37,7 @@ SECURED APIs should be called with Bearer Token.
 
 - **GET** - http://localhost:8080/auth/welcome
 - **POST** - http://localhost:8080/auth/signup
-  - Returns: String
+    - Returns: String
   ```json
   {
     "firstName": "John",
@@ -20,7 +47,7 @@ SECURED APIs should be called with Bearer Token.
   }
   ```
 - **POST** - http://localhost:8080/auth/signin
-  - Returns: JWT Token
+    - Returns: JWT Token
   ```json
   {
     "userName": "john.doe@example.com",
@@ -40,17 +67,11 @@ SECURED APIs should be called with Bearer Token.
 - **placementTimestamp**
 
 - **GET** - http://localhost:8080/orders/history
-  - Returns: Array of Order
+    - Returns: Array of Order
 - **POST** - http://localhost:8080/orders/place
-  - Returns: Order
-  ```json
-  {
-    "itemName": "Product A",
-    "quantity": 2,
-    "shippingAddress": "123 Main St, City",
-  }
-  ```
-- **PUT** - http://localhost:8080/orders/{order_id}/cancel
+    - Returns: Reference Number
+
+- **PUT** - http://localhost:8080/orders/{orderReference}/cancel
 
 ### Cron Job
 
@@ -67,19 +88,20 @@ SECURED APIs should be called with Bearer Token.
    ```
 
 2. **Prerequisites:**
-   - Docker
-   - If running locally:
-     - JDK 17
+    - Docker
+    - If running locally:
+        - JDK 17
 
 3. **Comment/Uncomment Application Properties:**
-   - Depending on the environment (local, production, etc.), modify the application properties. Comment or uncomment relevant lines in the configuration files.
+    - Depending on the environment (local, production, etc.), modify the application properties. Comment or uncomment relevant lines in the configuration files.
 
 4. **Running Locally:**
-   - Ensure JDK 17 is installed.
-   - Run the application using your preferred build tool or IDE.
+    - Ensure JDK 17 is installed.
+    - Run the application using your preferred build tool or IDE.
 
 5. **Docker:**
-   - Run the following command in the ROOT Directory
+    - Run the following command in the ROOT Directory
   ```bash
     docker-compose up
   ```
+```
